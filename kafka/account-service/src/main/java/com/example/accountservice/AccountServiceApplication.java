@@ -16,13 +16,13 @@ public class AccountServiceApplication {
 
 	@Bean
 	NewTopic notification() {
-		// topic name, partition numbers, replication number
-		return new NewTopic("notification", 2, (short) 1);
+		// topic name, partition numbers, replication number(broker)
+		return new NewTopic("notification", 2, (short) 3);
 	}
 
 	@Bean
 	NewTopic statistic() {
-		// topic name, partition numbers, replication number
-		return new NewTopic("statistic", 1, (short) 1);
+		// topic name, partition numbers, replication number(broker)
+		return new NewTopic("statistic", 1, (short) 3);
 	}
 }

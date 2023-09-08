@@ -19,7 +19,8 @@ public class MessageService {
     // id: để khi chạy 2 con khác nhau nếu có id thì nó sẽ chung group
     // topics: đọc topic có tên notification
     public void listen(MessageDto messageDto) {
-        logger.info("Received: ", messageDto.getTo());
+        logger.info("Received notificationGroup: " + messageDto.getToName());
 //        emailService.sendEmail(messageDto);
     }
+
 }

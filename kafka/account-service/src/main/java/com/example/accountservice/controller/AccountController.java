@@ -3,6 +3,7 @@ package com.example.accountservice.controller;
 import com.example.accountservice.dto.AccountDto;
 import com.example.accountservice.dto.MessageDto;
 import com.example.accountservice.dto.StatisticDto;
+import com.example.accountservice.service.PollingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,9 @@ public class AccountController {
     @Autowired
     KafkaTemplate<String, Object> kafkaTemplate;
 
+    @Autowired
+    PollingService pollingService;
+
     @PostMapping("/new")
     public AccountDto create(@RequestBody AccountDto accountDto) {
         StatisticDto statisticDto = new StatisticDto("Account" + accountDto.getEmail() + "is created", new Date());
@@ -29,9 +33,9 @@ public class AccountController {
         messageDto.setSubject("Welcome to Kafka");
         messageDto.setContent("Test");
 
-        kafkaTemplate.send("notification", accountDto.getName(), messageDto);
-        kafkaTemplate.send("statistic", accountDto.getName(), statisticDto);
-
+        kafkaTemplate.send("notification", accountDto.getName(), statisticDto);
+//            pollingService.producer2(messageDto);
+        kafkaTemplate.send("statistic", accountDto.getName(), messageDto);
         return accountDto;
     }
 }

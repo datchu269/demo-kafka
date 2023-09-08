@@ -17,11 +17,11 @@ public class StatisticServiceApplication {
         SpringApplication.run(StatisticServiceApplication.class, args);
     }
 
-    @Bean
-    DefaultErrorHandler errorHandler(KafkaOperations<String, Object> template) {
-        //DeadLetterPublishingRecoverer: gửi event lỗi đến dlt topic
-        //FixedBackOff: sau 1s gửi lại event lỗi đó, gửi lại 2 lần
-        return new DefaultErrorHandler(new DeadLetterPublishingRecoverer(template), new FixedBackOff(1000L, 2));
-    }
+//    @Bean
+//    DefaultErrorHandler errorHandler(KafkaOperations<String, Object> template) {
+//        //DeadLetterPublishingRecoverer: gửi event lỗi đến dlt topic
+//        //FixedBackOff: sau 1s gửi lại event lỗi đó, gửi lại 2 lần
+//        return new DefaultErrorHandler(new DeadLetterPublishingRecoverer(template), new FixedBackOff(1000L, 2));
+//    }
 
 }
